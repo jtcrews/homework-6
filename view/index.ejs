@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jokebook</title>
+</head>
+<body>
+    <h1>Jokebook</h1>
+    
+    <h2>Random Joke:</h2>
+    <p><%= randomJoke.setup %> - <%= randomJoke.delivery %></p>
+    
+    <h3>Categories:</h3>
+    <ul>
+        <% categories.forEach(category => { %>
+            <li><a href="/jokebook/joke/<%= category.name %>"><%= category.name %></a></li>
+        <% }) %>
+    </ul>
+
+    <h3>Add a New Joke</h3>
+    <form action="/jokebook/joke/new" method="POST">
+        <select name="category">
+            <% categories.forEach(category => { %>
+                <option value="<%= category.name %>"><%= category.name %></option>
+            <% }) %>
+        </select>
+        <input type="text" name="setup" placeholder="Setup" required>
+        <input type="text" name="delivery" placeholder="Delivery" required>
+        <button type="submit">Add Joke</button>
+    </form>
+</body>
+</html>
